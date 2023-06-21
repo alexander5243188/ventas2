@@ -23,6 +23,7 @@
 								
 								<th class="table-th text-white">NOMBRE</th>
 								<th class="table-th text-white text-center">CEDULA DE IDENTIDAD</th>
+								<th class="table-th text-white text-center">MONTO TOTAL PAGADO</th>
                                 <th class="table-th text-white text-center">FECHA DE REGISTRO</th>
 								
 							</tr>
@@ -33,6 +34,7 @@
 															
 								<td><h6>{{ $cliente->name == null ? ('Sin nombre') : $cliente->name }}</h6></td>
 								<td class="text-center"><h6>{{ $cliente->ci ==null ? ('Sin cedula') : $cliente->ci}}</h6></td>
+								<td class="text-center"><h6>{{$cliente->total}}</h6></td>
                                 <td class="text-center"><h6>{{$cliente->created_at}}</h6></td>
 							</tr>
                             @endforeach

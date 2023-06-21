@@ -9,7 +9,7 @@
 
 	<style>
 		@page {
-            margin: 2cm 2cm;
+            margin: 1cm 1cm;
             font-size: 1em;
         }
 
@@ -151,17 +151,17 @@
 					<td colspan="1" align="left" >{{$item->producto}}</td>
 					<td colspan="1" align="center" >{{$item->stockS}}</td>
 					<td colspan="1" align="center" >{{$item->stockI}}</td>
-					<td colspan="1" align="center"></td>	
+					<td colspan="1" align="center">{{$item->restante}}</td>	
 					<td colspan="1" align="center">{{$item->fecha}}</td>					
 				</tr>
 				@endforeach
-			</tbody>
-			<tfoot>
+			</tbody>			
+			<tfoot>				
 				<tr>
 					<td class="text-center"><span><b>Total</b></span></td>					
-					<td class="text-center">{{$data->sum('stockS')}}</td>
-					<td class="text-center">{{$data->sum('stockI')}}</td>
-					<td colspan="1" class="text-center">
+					<td class="text-center" style="color:red">{{$data->sum('stockS')}}</td>
+					<td class="text-center" style="color:red">{{$data->sum('stockI')}}</td>
+					<td colspan="1" class="text-center" style="color:red">
 						<span><strong> {{ $data->sum('stockI') - $data->sum('stockS') }}</strong></span>
 					</td>
 				</tr>

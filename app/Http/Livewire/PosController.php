@@ -161,6 +161,7 @@ class PosController extends Component
 			if($sale) 
 			{
 				$items = Cart::getContent();
+				
 				foreach ($items as  $item) {					
 					SaleDetail::create([
 						'price' => $item->price,
@@ -168,9 +169,11 @@ class PosController extends Component
 						'product_id' => $item->id,						
 						'producto' => $item->name,
 						'sale_id' => $sale->id,
-						'usuario_id' => Auth()->user()->id,				
+						'usuario_id' => Auth()->user()->id,	
+						'totalpagado'=> $item->price * $item->quantity,
 					]);
-					$idProveedor = Product::find($item->id);						
+					$idProveedor = Product::find($item->id);
+					$gracielaAlejandra = Product::find($item->id);	
 					//dd($idProveedor->proveedor_id);
 					Almacen::create([
 						'fecha'=> Carbon::now()->format('Y-m-d'),
@@ -180,7 +183,8 @@ class PosController extends Component
 						'stock' => $item->quantity,
 						'stockS' => $item->quantity,
 						'salida' => $this->tipoSalida,
-						'nombrevendedor' => Auth()->user()->name
+						'nombrevendedor' => Auth()->user()->name,
+						'restante' => $gracielaAlejandra->stock - $item->quantity
 					]);					
 					// ---------------------------------------------registrar dato en almacen	
 					$idregistroventa = $item->id;
@@ -197,8 +201,10 @@ class PosController extends Component
 					// ---------------------------------------------registrar dato de cliente	
 					Client::create([
 						'name' => $this->nombre_cliente,
-						'ci' => $this->cedula_cliente
+						'ci' => $this->cedula_cliente,
+						'total' => $this->total
 					]);	
+					//dd($this->total);
 
 					// ---------------------------------------------
 
@@ -206,8 +212,11 @@ class PosController extends Component
 					$product = Product::find($item->id);
 					$product->stock = $product->stock - $item->quantity;
 					$this->printLast();
+					
 
 					$product->save();
+
+					
 									
 					
 				}

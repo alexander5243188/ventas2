@@ -15,7 +15,8 @@ class SaleDetail extends Model
         'product_id',
         'producto',
         'sale_id',
-        'usuario_id'      
+        'usuario_id',
+        'totalpagado'   
     ];
 
 }

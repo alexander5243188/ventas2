@@ -10,12 +10,12 @@
 	<link rel="stylesheet" href="{{ public_path('css/custom_page.css') }}">
 <style>
 	@page {
-            margin: 2cm 2cm;
+            margin: 1cm 1cm;
             font-size: 1em;
         }
 
         body {
-            margin: 3cm 2cm 2cm;
+            margin: 2cm 1cm 1cm;
         }
 
         header {			
@@ -77,7 +77,7 @@
 					<td colspan="1" align="left">{{$item->producto}}</td>
 					<td colspan="1" align="center">{{number_format($item->quantity),0}}</td>
 					<td colspan="1" align="right">{{$item->price}}</td>	
-					<td colspan="1" align="center">{{number_format(($item->quantity)*($item->price)),2}}</td>					
+					<td colspan="1" align="right">{{ number_format( (($item->quantity)*($item->price)),2) }}</td>					
 
 					<td colspan="1" align="right">{{$item->created_at}}</td>										
 									
@@ -87,10 +87,12 @@
 			<tfoot>
 				<tr>
 					<td class="text-center">Totales:</td>
-					<td class="text-center">{{$data->sum('quantity')}}</td>											
-					<td class="text-center"></td>	
-					<td colspan="1" class="text-center">
-						<span><strong>Bs {{$data->sum('price')}}</strong></span>
+					<td class="text-center">
+						<span><strong>{{$data->sum('quantity')}}</strong></span>
+					</td>											
+					<td class="text-center"></td>
+					<td colspan="1" class="text-right">
+						<span><strong>Bs {{number_format($data->sum('totalpagado'),2)}}</strong></span>
 					</td>						
 				</tr>
 			</tfoot>

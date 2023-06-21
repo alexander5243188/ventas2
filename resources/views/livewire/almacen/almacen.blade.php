@@ -79,9 +79,9 @@
 									<tbody>
 									<tr>
 											<td class="text-center font-weight-bold">TOTALES</td>
-											<td class="text-center">{{$totalIngreso}}</td>
-											<td class="text-center">{{number_format($totalSalida,0)}}</td>	
-											<td class="text-center">{{number_format($totalStock,0)}}</td>
+											<td class="text-center"> <strong>{{$totalIngreso}}</strong></td>
+											<td class="text-center"><strong>{{number_format($totalSalida,0)}}</strong></td>	
+											<td class="text-center"><strong>{{number_format($totalStock,0)}}</strong></td>
 											<td></td>
 										</tr>
 										             

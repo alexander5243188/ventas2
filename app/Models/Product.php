@@ -30,7 +30,7 @@ class Product extends Model
 		'level_id',
 		'user_id',
 		'type',
-		'serie_comprobante'
+		'serie_comprobante'		
 	];
 	public function almacen(){return $this->belongsTo(Almacen::class);}
 	public function alert(){return $this->belongsTo(Alert::class);}

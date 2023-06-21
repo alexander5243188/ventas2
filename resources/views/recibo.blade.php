@@ -6778,25 +6778,25 @@ button.close {
         <div class="row">
           <div class="col-sm-6">
               <h1 class="text-center">CONERCIAL FUENTES</h1>
-              <h5 class="text-center">COMPROBANTE DE VENTA</h5>
-              <span>Sin valor legal</span>
+              <h5 class="text-center">COMPROBANTE DE VENTA <small>Sin valor legal</small></h5>
+              <h5 class="text-right">Teléfono : 70789278</h5>
+              <h5 class="text-right">Dirección : Av. Republica # 1647</h5>             
           </div>
+          
         </div>
 
         <div class="row">            
             <div class="col-sm-12 ">
-                <div class="panel panel-default">
+                <div class="panel panel-default">                  
                     <div class="panel-heading">
-                        <h5 class="text-right">Teléfono : 67531425</h5>
-                        <h5 class="text-right">Dirección : Av. Republica # 1647</h5>
-                        <h5><strong>Lugar y fecha: Cochabamba, </strong> {{ date('d-m-Y H:i:s') }}</h5>
+                        <h5><strong>Fecha de emisión: </strong> {{ date('d-m-Y H:i:s') }}</h5>                                                
                     </div>  
-                    <div class="panel-body">
-                            <p><strong>Señor(es): </strong>{{ $idUltimaVenta->nombrecliente == null ? ('Sin nombre') : $idUltimaVenta->nombrecliente }} <strong>NIT/CI: </strong>{{ $idUltimaVenta->cedulacliente ==null ? ('Sin cedula') : $idUltimaVenta->cedulacliente}}</p>    
-                            <p><strong>Cod. Cliente: </strong>{{$idUltimaVenta->id}}</p>                            
-                                                                                                                                                                                                       				
-                                                          
-                    </div>                 
+                    <div class="panel-body">                      
+                            <p><strong>Código de cliente: </strong>{{$idUltimaVenta->id}}</p>                            
+                            <p><strong>Nombre del cliente: </strong>{{ $idUltimaVenta->nombrecliente == null ? ('Sin nombre') : $idUltimaVenta->nombrecliente }} </p>    
+                            <p><strong>NIT/CI: </strong>{{ $idUltimaVenta->cedulacliente ==null ? ('Sin cedula') : $idUltimaVenta->cedulacliente}}</p>
+                            <p><strong>Forma de pago: </strong> Efectivo</p>
+                    </div>
                 </div>
             </div>
                          
@@ -6816,7 +6816,7 @@ button.close {
                         <td style="text-align: center;">{{ number_format($producto->cantidad),0 }}</td>                        
                         <td>{{ $producto->producto}}</td>
                         <td class=" text-right ">{{ $producto->price}}</td>
-                        <td class=" text-right ">{{ ($producto->price)*($producto->cantidad)}}</td>
+                        <td class=" text-right ">{{ number_format( ($producto->price)*($producto->cantidad),2 ) }}</td>
                     </tr> 
                     @endforeach
                     <tr>

@@ -25,6 +25,7 @@ class CreateAlmacensTable extends Migration
             $table->string('salida')->nullable();  
             $table->string('producto')->nullable();  
             $table->string('nombrevendedor')->nullable();             
+            $table->string('restante')->nullable();  
             $table->timestamps();
         });
     }

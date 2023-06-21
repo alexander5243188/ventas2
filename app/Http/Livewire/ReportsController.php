@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+
+use App\Models\client;
+
 use Carbon\Carbon;
 use Livewire\WithPagination;
 
@@ -71,7 +74,7 @@ class ReportsController extends Component
             $this->data = Sale::join('users as u','u.id','sales.user_id')
             //
             ->join('sale_details as s', 's.id', 's.sale_id')            
-            ->select('sales.*','u.name as user','s.producto as producto')
+            ->select('sales.*','u.name as user','s.producto as producto') //PODRIAS AÑADIR TOTAL de sales
             //
             ->select('sales.*','u.name as user')
             
@@ -91,14 +94,19 @@ class ReportsController extends Component
             ->orderBy('id','desc')
             ->get();            
         }
-        $this->totalVentas();
-       
+        $this->totalVentas();               
 
-    }
-    public function totalVentas(){
-        $idUltimaVenta = Sale::latest()->first();                          
-        view()->share('idUltimaVenta', $idUltimaVenta);
     }    
+    public function totalVentas(){
+        $idUltimaVenta = Sale::latest()->first();
+        view()->share('idUltimaVenta', $idUltimaVenta);        
+    }    
+    // ----------------------------------------------- para el numero de factura
+    public function numeroFactura(){
+        $idCliente = Client::latest()->first();                          
+        view()->share('idCliente', $idCliente);
+    } 
+    //---------------------------------------------------------------------------
 
     // RETORNA LOS DATOS PARA EL MODAL, RECIBE $saleid y devuelve details para la iteracion
     public function getDetails($saleId)

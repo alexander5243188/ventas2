@@ -49,12 +49,8 @@
 									</a>
 									
                            @if($proveedor->products->count() < 1 ) 
-									<a 
-										href="javascript:void(0);"  
-										class="btn btn-danger" 
-										title="Eliminar proveedor">
-										<i class="fas fa-trash"></i>
-									</a>	
+						   
+										
                            @endif			
 
 								</td>

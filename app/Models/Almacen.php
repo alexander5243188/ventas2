@@ -18,7 +18,8 @@ class Almacen extends Model
         'ingreso',
         'salida',
         'nombrevendedor',
-        'producto'
+        'producto',
+        'restante'
 	];
 	public function product(){return $this->belongsTo(Product::class);}	
 }

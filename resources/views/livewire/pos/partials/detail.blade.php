@@ -12,8 +12,8 @@
 <div class="connect-sorting mb-2">
 <div class="input-group">	
   <span class="input-group-text"><strong>Datos Cliente</strong></span>
-  <input type="text" aria-label="nombre_cliente" class="form-control product-name" wire:model.lazy="nombre_cliente"  placeholder="Nombre cliente" autofocus required style="outline: none;">
-  <input type="text" aria-label="cedula_cliente" class="form-control product-name" wire:model.lazy="cedula_cliente" placeholder="Cedula de identidad" autofocus required>
+  <input type="text" aria-label="nombre_cliente" class="form-control product-name" wire:model.lazy="nombre_cliente"  placeholder="Apellido cliente" autofocus required style="outline: none;">
+  <input type="text" aria-label="cedula_cliente" class="form-control product-name" wire:model.lazy="cedula_cliente" placeholder="Cedula de identidad / NIT" autofocus required>
 </div>
 </div>
 <!------------------------------------------------------------------------------->

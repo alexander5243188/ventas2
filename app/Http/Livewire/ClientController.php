@@ -32,6 +32,7 @@ class ClientController extends Component
     {
         if(strlen($this->search) > 0)
 			$data = Client::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('ci', 'like', '%' . $this->search . '%')
             ->paginate($this->pagination);
 		else
 			$data = Client::orderBy('id','desc')

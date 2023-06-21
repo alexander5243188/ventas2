@@ -24,24 +24,31 @@ class ExportController extends Controller
             $from = Carbon::parse(Carbon::now())->format('Y-m-d') . ' 00:00:00';
             $to = Carbon::parse(Carbon::now())->format('Y-m-d')   . ' 23:59:59';
 
-        } else {
+        } else 
+        {
            $from = Carbon::parse($dateFrom)->format('Y-m-d') . ' 00:00:00';
            $to = Carbon::parse($dateTo)->format('Y-m-d')     . ' 23:59:59';
-       }
+        }
 
 
-       if($userId == 0) 
-       {
+       if($userId == 0) //AQUI TIENES QUE AÑADIR EL DE SALES LA ULTIMA VENTA
+       {        
         $data = DB::table('sale_details as s')            
-        ->whereBetween('s.created_at', [$from, $to])
-        
+        //$this->data = Sale::join('sale_details as s', 's.sale_id', 'sales.id')
+        //->select('sales.*')
+        ->whereBetween('s.created_at', [$from, $to])        
         ->get();        
-    } else {         
-        $data = DB::table('sale_details as s')            
+       } else 
+       {         
+        $data = DB::table('sale_details as s')    
+       
         ->whereBetween('s.created_at', [$from, $to])
         ->where('s.usuario_id', $userId)
         ->get();
-    }
+       }
+/////////////////////////////////////////////////////////////////////////
+       $this->totalVentas(); 
+///////////////////////////////////////////////////////////////////////////
 
     $user = $userId == 0 ? 'Todos' : User::find($userId)->name;
     $pdf = PDF::loadView('pdf.reporte', compact('data','reportType','user','dateFrom','dateTo'));
@@ -61,6 +68,9 @@ class ExportController extends Controller
         //$customReportName = 'salesReport_'.Carbon::now()->format('Y-m-d').'.pdf';
        // return $pdf->download($customReportName); //descargar
 
+    //------------------------------------------------------------------------------ LLAMANDO A LA FUNCION
+       $this->totalVentas();     
+    //------------------------------------------------
     }
 
 
@@ -70,5 +80,13 @@ class ExportController extends Controller
         
         return Excel::download(new SalesExport($userId, $reportType, $dateFrom, $dateTo),$reportName );
     }
+
+
+    //------------------------------------------------------------
+    public function totalVentas(){        
+        $idUltimaVenta = Sale::latest()->first();         
+        view()->share('idUltimaVenta', $idUltimaVenta);
+    } 
+    //------------------------------------------------------------
 
 }

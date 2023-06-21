@@ -21,6 +21,7 @@ class CreateSaleDetailsTable extends Migration
             $table->string('producto', 200);
             $table->foreignId('sale_id')->constrained();
             $table->string('usuario_id', 200);
+            $table->decimal('totalpagado',200);
 
             $table->timestamps();
         });

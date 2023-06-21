@@ -120,7 +120,7 @@ class AlmacenController extends Component
 				'p.level_id as nivel',
 				'pro.name as proveedor'	
 			)			
-		->orderBy('almacens.id','asc')
+		->orderBy('almacens.id','desc')
 		->paginate($this->pagination);	
 		//dd($data);
 		
@@ -155,6 +155,7 @@ class AlmacenController extends Component
 
 		$obtenerValor = Product::find($this->productoid);
 		$busqueda = $obtenerValor->name;
+		$sumaingreso = $obtenerValor->stock;
 		
 		$almacen = Almacen::create([		
 			'fecha' => $this->fechaIngresoAlmacen,
@@ -166,6 +167,7 @@ class AlmacenController extends Component
 			'salida' => $this->salidaProducto,
 			'nombrevendedor' => Auth()->user()->name,
 			'producto' => $busqueda,
+			'restante' =>$sumaingreso + $this->cantidadProductoActualizado
 		]);
 
 		//-------------------------- ACTUALIZAR DATOS DEL PRODUCTO
